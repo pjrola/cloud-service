@@ -25,6 +25,13 @@ public class Instance extends BaseEntity {
 
     public Instance() {}
 
+    public Instance(String remoteId, String name, InstanceState state, Provider provider) {
+        this.remoteId = remoteId;
+        this.name = name;
+        this.state = state;
+        this.provider = provider;
+    }
+
     public String getRemoteId() {
         return remoteId;
     }
@@ -51,5 +58,15 @@ public class Instance extends BaseEntity {
 
     public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+
+    @Override
+    public String toString() {
+        return "Instance{" +
+                "remoteId='" + remoteId + '\'' +
+                ", name='" + name + '\'' +
+                ", state=" + state +
+                ", provider=" + provider +
+                '}';
     }
 }

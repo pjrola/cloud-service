@@ -1,15 +1,21 @@
 package com.cloud.service.domain;
 
 public enum Provider {
-    AMAZON,
-    MICROSOFT;
+    AWS(TypeConstants.AWS),
+    MICROSOFT(TypeConstants.MICROSOFT);
 
-    public static Provider getIfPresent(String name) {
-        for (Provider provider : Provider.values()) {
-            if (provider.name().equalsIgnoreCase(name)) {
-                return provider;
-            }
-        }
-        return Provider.AMAZON;
+    private final String providerName;
+
+    Provider(String providerName) {
+        this.providerName = providerName;
+    }
+
+    @Override
+    public String toString() {
+        return this.providerName.toLowerCase();
+    }
+    public interface TypeConstants {
+        String AWS = "aws";
+        String MICROSOFT = "azure";
     }
 }

@@ -1,5 +1,7 @@
 package com.cloud.service.service;
 
-public interface InstanceAdapterService<T> {
-    void process(T request);
+import com.cloud.service.domain.Instance;
+
+public interface InstanceAdapterService {
+    Instance process(Instance request);
 }

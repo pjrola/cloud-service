@@ -6,6 +6,9 @@ spring:
     url: jdbc:mysql://localhost:3306/cloud-service?useSSL=false&createDatabaseIfNotExist=true
     username: root
     password: root
+  jackson:
+    mapper:
+      accept_case_insensitive_enums: true
 server:
   port: 9000
   compression:
