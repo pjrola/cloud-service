@@ -18,7 +18,7 @@ public class ExecutionTimeTrackingAspect {
         long startTime = System.currentTimeMillis();
         Object obj = joinPoint.proceed();
         long endTime = System.currentTimeMillis();
-        log.info("Method name " + joinPoint.getSignature() + "time taken to execute : " + (endTime - startTime) + "ms");
+        log.info("Method name " + joinPoint.getSignature() + " time taken to execute : " + (endTime - startTime) + "ms");
         return obj;
     }
 

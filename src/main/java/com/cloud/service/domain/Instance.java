@@ -17,7 +17,7 @@ public class Instance extends BaseEntity {
     @Column(name = "remote_id", unique = true, updatable = false)
     private String remoteId;
 
-    @NotBlank
+    @NotBlank(message = "{instance.name.notBlank}")
     @Column(name = "name", unique = true)
     private String name;
 

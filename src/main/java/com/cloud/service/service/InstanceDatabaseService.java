@@ -9,10 +9,12 @@ import java.util.List;
 @Service
 public class InstanceDatabaseService implements InstanceService {
 
+    private InstanceAdapterService service;
     private InstanceRepository repository;
 
     @Autowired
-    public InstanceDatabaseService(InstanceRepository repository) {
+    public InstanceDatabaseService(InstanceAdapterService service, InstanceRepository repository) {
+        this.service = service;
         this.repository = repository;
     }
 

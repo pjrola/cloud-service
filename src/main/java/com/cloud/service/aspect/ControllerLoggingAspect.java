@@ -42,7 +42,7 @@ public class ControllerLoggingAspect {
         ObjectMapper mapper = new ObjectMapper();
         logger.info("Microservice Call Response: "
                 + joinPoint.getSignature().getName()
-                + "- " + joinPoint.getSignature().getDeclaringTypeName()
+                + joinPoint.getSignature()
         );
         logger.info("ResponseBody=" + mapper.writeValueAsString(retVal));
     }

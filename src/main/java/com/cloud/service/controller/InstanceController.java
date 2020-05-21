@@ -1,7 +1,9 @@
 package com.cloud.service.controller;
 
 import com.cloud.service.annotation.Loggable;
+import com.cloud.service.annotation.TrackExecutionTime;
 import com.cloud.service.domain.Instance;
+import com.cloud.service.exception.ResourceNotFoundException;
 import com.cloud.service.service.InstanceDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +20,11 @@ public class InstanceController {
         this.service = service;
     }
 
-    @Loggable
     @PostMapping("/instances")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public Instance create(@Valid @RequestBody Instance instance) {
-        return service.save(instance);
+    public Instance create(@Valid @RequestBody Instance instance) throws ResourceNotFoundException {
+        throw new ResourceNotFoundException(instance.getRemoteId());
     }
 
 }

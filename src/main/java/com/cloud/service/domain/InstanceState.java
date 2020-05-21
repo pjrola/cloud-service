@@ -2,12 +2,12 @@ package com.cloud.service.domain;
 
 public enum InstanceState {
     PENDING,
+    PROVISIONING,
     RUNNING,
-    TERMINATED,
     STOPPING,
     STOPPED,
     UNKNOWN,
-    STARTING;
+    TERMINATED;
 
     public static InstanceState getIfPresent(String name) {
         for (InstanceState state : InstanceState.values()) {

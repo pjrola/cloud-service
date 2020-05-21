@@ -14,6 +14,7 @@ public enum Provider {
     public String toString() {
         return this.providerName.toLowerCase();
     }
+
     public interface TypeConstants {
         String AWS = "aws";
         String MICROSOFT = "azure";
