@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InstanceRepository extends PagingAndSortingRepository<Instance, Long> {
+    Instance findByRemoteId(String remoteId);
+    Instance findByName(String name);
 }

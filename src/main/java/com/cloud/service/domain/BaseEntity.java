@@ -1,7 +1,5 @@
 package com.cloud.service.domain;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
@@ -23,8 +21,8 @@ public abstract class BaseEntity implements Serializable {
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_modified_at")
-    private Date lastModifiedAt;
+    @Column(name = "updated_at")
+    private Date updated_at;
 
     public Long getId() {
         return id;
@@ -34,7 +32,7 @@ public abstract class BaseEntity implements Serializable {
         return createdAt;
     }
 
-    public Date getLastModifiedAt() {
-        return lastModifiedAt;
+    public Date getUpdatedAt() {
+        return updated_at;
     }
 }

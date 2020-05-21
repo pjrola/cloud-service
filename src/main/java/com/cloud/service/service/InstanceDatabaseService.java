@@ -1,44 +1,37 @@
 package com.cloud.service.service;
 
 import com.cloud.service.domain.Instance;
-import com.cloud.service.domain.InstanceState;
-import com.cloud.service.domain.Provider;
+import com.cloud.service.repository.InstanceRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class InstanceDatabaseService implements InstanceService {
-    @Override
-    public Instance get(String name) {
-        return null;
+
+    private InstanceRepository repository;
+
+    @Autowired
+    public InstanceDatabaseService(InstanceRepository repository) {
+        this.repository = repository;
     }
 
-    @Override
-    public Instance get(UUID uuid) {
-        return null;
+    public Instance get(String remoteId) {
+        return repository.findByRemoteId(remoteId);
     }
 
-    @Override
     public Instance save(Instance entity) {
-        Instance instance = new Instance();
-        instance.setName("test");
-        instance.setProvider(Provider.AWS);
-        instance.setState(InstanceState.PENDING);
-        return instance;
+        return repository.save(entity);
     }
 
-    @Override
     public void delete(Long id) {
 
     }
 
-    @Override
     public Instance get(Long id) {
         return null;
     }
 
-    @Override
     public List<Instance> getAll() {
         return null;
     }
