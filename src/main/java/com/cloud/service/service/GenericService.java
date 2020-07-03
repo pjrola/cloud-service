@@ -1,15 +1,20 @@
 package com.cloud.service.service;
 
+import com.cloud.service.exception.LockedException;
+import com.cloud.service.exception.ResourceNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.io.Serializable;
-import java.util.List;
 
 public interface GenericService<T, Id extends Serializable> {
 
-    T save(T entity);
+    T create(T entity);
 
-    void delete(Id id);
+    T update(Id id, T entity) throws ResourceNotFoundException, LockedException;
 
-    T get(Id id);
+    void delete(Id id) throws ResourceNotFoundException;
 
-    List<T> getAll();
+    T get(Id id) throws ResourceNotFoundException;
+
+    Page<T> findAll(Pageable pageable);
 }

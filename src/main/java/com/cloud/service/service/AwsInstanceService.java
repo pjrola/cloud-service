@@ -1,14 +1,21 @@
 package com.cloud.service.service;
 
+import com.amazonaws.services.cloudformation.AmazonCloudFormation;
 import com.cloud.service.domain.Instance;
-import com.cloud.service.domain.Provider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service(Provider.TypeConstants.AWS)
+@Service("aws")
 public class AwsInstanceService implements InstanceAdapterService {
 
+    private AmazonCloudFormation cloudFormation;
+
+    @Autowired
+    public AwsInstanceService(AmazonCloudFormation stackBuilder) {
+        this.cloudFormation = stackBuilder;
+    }
+
     public Instance create(Instance request) {
-        //aws related code
         return null;
     }
 

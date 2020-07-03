@@ -2,6 +2,7 @@ package com.cloud.service.controller;
 
 import com.cloud.service.exception.DuplicateResourceException;
 import com.cloud.service.exception.ExceptionResponse;
+import com.cloud.service.exception.LockedException;
 import com.cloud.service.exception.ResourceNotFoundException;
 import com.cloud.service.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class ExceptionController {
     public ResponseEntity<ExceptionResponse> resourceNotFound(ResourceNotFoundException ex, Locale locale) {
         ExceptionResponse response = new ExceptionResponse();
         response.setErrorCode(String.valueOf(HttpStatus.NOT_FOUND.value()));
-        response.setErrorMessage(messageSource.getMessage("exception.notfound", new Object[] {
+        response.setErrorMessage(messageSource.getMessage("exception.not.found", new Object[] {
                 ex.getProperty(),
         }, locale));
 
@@ -45,5 +46,16 @@ public class ExceptionController {
         }, locale));
         response.setErrors(ValidationUtil.fromBindingErrors(result));
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(LockedException.class)
+    public ResponseEntity<ExceptionResponse> resourceLock(LockedException ex, Locale locale) {
+        ExceptionResponse response = new ExceptionResponse();
+        response.setErrorCode(String.valueOf(HttpStatus.CONFLICT.value()));
+        response.setErrorMessage(messageSource.getMessage("exception.resource.locked", new Object[] {
+                ex.getProperty(),
+        }, locale));
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 }
